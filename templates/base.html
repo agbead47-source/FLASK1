@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}STATIONERY ARCHIVE{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- 흐르는 텍스트 배너 -->
+    <div class="marquee-container">
+        <div class="marquee">
+            ✦ AUTUMN COLLECTION 2026 ✦ THE ART OF RECORDING ✦ TRAVELER'S FACTORY CURATION ✦
+        </div>
+    </div>
+
+    <!-- 힙한 네비게이션 바 -->
+    <nav class="nav-bar">
+        <div class="nav-logo"><a href="/">Archive</a></div>
+        <div class="nav-links">
+            <a href="/">COVER</a>
+            <a href="/shop">SHOP</a>
+        </div>
+    </nav>
+
+    <main>{% block content %}{% endblock %}</main>
+
+    <!-- 챗봇 -->
+    <div id="chatbot-container">
+        <div id="chat-window">
+            <div id="chat-header">Curator Bot 🤖</div>
+            <div id="chat-messages"></div>
+            <div id="chat-input-area">
+                <input type="text" id="chat-input" placeholder="ASK ME ANYTHING..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button onclick="sendMessage()">SEND</button>
+            </div>
+        </div>
+        <button id="chat-toggle" onclick="toggleChat()">?</button>
+    </div>
+
+    <script>
+        function toggleChat() {
+            const chat = document.getElementById('chat-window');
+            chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
+        }
+        async function sendMessage() {
+            const input = document.getElementById('chat-input');
+            const msg = input.value.trim();
+            if (!msg) return;
+            const msgs = document.getElementById('chat-messages');
+            msgs.innerHTML += `<div class="msg-user">YOU: ${msg}</div>`;
+            input.value = '';
+            
+            try {
+                const res = await fetch('/chat', {
+                    method: 'POST', headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({message: msg})
+                });
+                const data = await res.json();
+                msgs.innerHTML += `<div class="msg-bot">BOT: ${data.response}</div>`;
+                msgs.scrollTop = msgs.scrollHeight;
+            } catch(e) {
+                msgs.innerHTML += `<div class="msg-bot">BOT: ERROR</div>`;
+            }
+        }
+    </script>
+</body>
+</html>

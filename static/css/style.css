@@ -1,0 +1,98 @@
+/* 구글 폰트: 거대한 영문 타이틀용 Anton, 본문용 Pretendard */
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    background-color: #e5e5e5; /* 힙한 라이트 그레이 */
+    color: #111;
+    overflow-x: hidden;
+}
+
+/* 흐르는 전광판 텍스트 (Marquee) */
+.marquee-container {
+    background: #111;
+    color: #fff;
+    padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 2px solid #111;
+}
+.marquee {
+    display: inline-block;
+    animation: scroll 15s linear infinite;
+    font-weight: 800;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+@keyframes scroll {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* 네비게이션: 선명한 테두리 (Brutalist) */
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #111;
+    background: #e5e5e5;
+}
+.nav-logo a {
+    display: block;
+    font-family: 'Anton', sans-serif;
+    font-size: 32px;
+    padding: 20px 40px;
+    color: #111;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-right: 2px solid #111;
+}
+.nav-links {
+    display: flex;
+}
+.nav-links a {
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+    font-weight: 700;
+    color: #111;
+    text-decoration: none;
+    border-left: 2px solid #111;
+    transition: background 0.3s, color 0.3s;
+}
+.nav-links a:hover {
+    background: #111;
+    color: #fff;
+}
+
+/* 힙한 챗봇 UI */
+#chatbot-container { position: fixed; bottom: 30px; right: 30px; z-index: 999; }
+#chat-toggle {
+    width: 60px; height: 60px; border-radius: 50%;
+    background: #FF4500; /* 네온 오렌지 포인트 */
+    color: white; font-size: 24px; border: 2px solid #111;
+    cursor: pointer; font-weight: bold;
+    box-shadow: 4px 4px 0px #111; /* 레트로 그림자 */
+    transition: transform 0.2s;
+}
+#chat-toggle:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #111; }
+
+#chat-window {
+    position: absolute; bottom: 80px; right: 0;
+    width: 350px; background: #e5e5e5;
+    border: 2px solid #111; box-shadow: 8px 8px 0px #111;
+    display: none; flex-direction: column;
+}
+#chat-header {
+    background: #111; color: #fff; padding: 15px; font-weight: 800; text-transform: uppercase;
+}
+#chat-messages {
+    height: 300px; padding: 15px; overflow-y: auto; font-size: 14px;
+}
+.msg-user { text-align: right; margin-bottom: 10px; color: #FF4500; font-weight: bold; }
+.msg-bot { text-align: left; margin-bottom: 10px; font-weight: 600; }
+#chat-input-area { display: flex; border-top: 2px solid #111; }
+#chat-input { flex: 1; padding: 15px; border: none; background: transparent; outline: none; font-weight: bold; }
+#chat-input-area button { padding: 0 20px; background: #111; color: #fff; border: none; border-left: 2px solid #111; cursor: pointer; font-weight: bold; }
