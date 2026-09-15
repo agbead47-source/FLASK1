@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <!-- 흐르는 텍스트 배너 -->
+    <!-- 흐르는 전광판 텍스트 -->
     <div class="marquee-container">
         <div class="marquee">
             ✦ AUTUMN COLLECTION 2026 ✦ THE ART OF RECORDING ✦ TRAVELER'S FACTORY CURATION ✦
@@ -20,6 +20,9 @@
         <div class="nav-links">
             <a href="/">COVER</a>
             <a href="/shop">SHOP</a>
+            <a href="/cart">CART ({{ session.get('cart', []) | length }})</a>
+            <!-- 인스타그램 링크만 남겨두었어요! -->
+            <a href="https://www.instagram.com/enj_hong/" target="_blank">INSTAGRAM</a>
         </div>
     </nav>
 

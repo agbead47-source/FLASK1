@@ -2,47 +2,16 @@
 
 {% block content %}
 <style>
-    /* 메인 페이지 전용 힙한 레이아웃 */
-    .hero-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 100px 20px;
-        text-align: center;
-        border-bottom: 2px solid #111;
-    }
-    .hero-title {
-        font-family: 'Anton', sans-serif;
-        font-size: 12vw; /* 화면 크기에 맞춰 엄청 크게! */
-        line-height: 0.9;
-        color: #111;
-        text-transform: uppercase;
-        margin-bottom: 20px;
-    }
-    .hero-subtitle {
-        font-weight: 700;
-        font-size: 24px;
-        letter-spacing: 5px;
-        margin-bottom: 50px;
-    }
-    .hero-image {
-        width: 100%;
-        max-width: 1200px;
-        height: 60vh;
-        object-fit: cover;
-        border: 2px solid #111;
-        filter: grayscale(100%); /* 처음엔 흑백 (매우 힙함) */
-        transition: filter 0.5s;
-    }
-    .hero-image:hover {
-        filter: grayscale(0%); /* 마우스 올리면 컬러로! */
-    }
+    .hero-section { display: flex; flex-direction: column; align-items: center; padding: 100px 20px; text-align: center; border-bottom: 2px solid #111; }
+    .hero-title { font-family: 'Anton', sans-serif; font-size: 12vw; line-height: 0.9; color: #111; text-transform: uppercase; margin-bottom: 20px; }
+    .hero-subtitle { font-weight: 700; font-size: 24px; letter-spacing: 5px; margin-bottom: 50px; }
+    .hero-image { width: 100%; max-width: 1200px; height: 60vh; object-fit: cover; border: 2px solid #111; filter: grayscale(100%); transition: filter 0.5s; }
+    .hero-image:hover { filter: grayscale(0%); }
 </style>
 
 <section class="hero-section">
     <h1 class="hero-title">STATIONERY<br>IS DEAD?</h1>
     <p class="hero-subtitle">NO, IT'S JUST EVOLVING.</p>
-    <!-- 트래블러스 노트 흑백/컬러 반전 이미지 -->
-    <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1200&q=80" alt="Vintage Notebook" class="hero-image">
+    <img src="{{ url_for('static', filename='images/cover.jpg') }}" alt="Vintage Notebook" class="hero-image">
 </section>
 {% endblock %}

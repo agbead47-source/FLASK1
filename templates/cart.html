@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .cart-header { padding: 60px 40px; border-bottom: 2px solid #111; }
+    .cart-header h2 { font-family: 'Anton', sans-serif; font-size: 60px; }
+    .cart-container { padding: 40px; min-height: 50vh; }
+    .cart-item { display: flex; align-items: center; border-bottom: 2px solid #111; padding: 20px 0; }
+    .cart-item img { width: 100px; height: 100px; object-fit: cover; border: 2px solid #111; margin-right: 30px; filter: grayscale(100%); }
+    .cart-item-info { flex: 1; }
+    .cart-item-title { font-weight: 800; font-size: 20px; text-transform: uppercase; }
+    .cart-item-price { font-family: 'Anton', sans-serif; font-size: 24px; color: #FF4500; }
+    .empty-cart { font-weight: 700; font-size: 24px; padding: 40px 0; }
+    .cart-actions { margin-top: 40px; display: flex; gap: 20px; }
+    .btn-action { padding: 15px 30px; background: #111; color: #fff; border: 2px solid #111; font-weight: 800; text-transform: uppercase; text-decoration: none; cursor: pointer; transition: 0.3s; }
+    .btn-action:hover { background: #FF4500; border-color: #FF4500; }
+    .btn-clear { background: transparent; color: #111; }
+    .btn-clear:hover { background: #111; color: #fff; border-color: #111; }
+</style>
+
+<div class="cart-header">
+    <h2>YOUR ARCHIVE.</h2>
+    <p>장바구니에 담긴 기록의 도구들</p>
+</div>
+
+<div class="cart-container">
+    {% if cart_items %}
+        {% for item in cart_items %}
+        <div class="cart-item">
+            <img src="{{ item.image }}" alt="{{ item.name }}">
+            <div class="cart-item-info">
+                <div class="cart-item-title">{{ item.name }}</div>
+            </div>
+            <div class="cart-item-price">{{ item.price }}</div>
+        </div>
+        {% endfor %}
+        
+        <div class="cart-actions">
+            <a href="/shop" class="btn-action">계속 쇼핑하기</a>
+            <a href="/clear_cart" class="btn-action btn-clear">장바구니 비우기</a>
+        </div>
+    {% else %}
+        <div class="empty-cart">장바구니가 비어있습니다. 텅 빈 노트를 채워보세요. 🍂</div>
+        <div class="cart-actions">
+            <a href="/shop" class="btn-action">SHOP으로 가기</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

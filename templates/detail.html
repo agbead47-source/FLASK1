@@ -2,44 +2,14 @@
 
 {% block content %}
 <style>
-    /* 상세 페이지 레이아웃 (반반 쪼개기) */
-    .detail-wrapper {
-        display: flex;
-        flex-wrap: wrap;
-        min-height: calc(100vh - 150px);
-    }
-    .detail-left {
-        flex: 1;
-        min-width: 300px;
-        border-right: 2px solid #111;
-    }
-    .detail-left img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .detail-right {
-        flex: 1;
-        min-width: 300px;
-        padding: 60px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    .detail-right h2 {
-        font-family: 'Anton', sans-serif;
-        font-size: 60px;
-        text-transform: uppercase;
-        margin-bottom: 30px;
-        line-height: 1;
-    }
+    .detail-wrapper { display: flex; flex-wrap: wrap; min-height: calc(100vh - 150px); }
+    .detail-left { flex: 1; min-width: 300px; border-right: 2px solid #111; }
+    .detail-left img { width: 100%; height: 100%; object-fit: cover; }
+    .detail-right { flex: 1; min-width: 300px; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+    .detail-right h2 { font-family: 'Anton', sans-serif; font-size: 60px; text-transform: uppercase; margin-bottom: 30px; line-height: 1; }
     .detail-right .desc { font-size: 18px; line-height: 1.6; margin-bottom: 40px; font-weight: 600; }
     .detail-right .price { font-family: 'Anton', sans-serif; font-size: 40px; margin-bottom: 40px; color: #FF4500; }
-    .btn-buy {
-        padding: 20px; background: #111; color: #fff; border: 2px solid #111;
-        font-weight: 800; font-size: 20px; cursor: pointer; text-transform: uppercase;
-        transition: all 0.3s;
-    }
+    .btn-buy { padding: 20px; background: #111; color: #fff; border: 2px solid #111; font-weight: 800; font-size: 20px; cursor: pointer; text-transform: uppercase; transition: all 0.3s; width: 100%; }
     .btn-buy:hover { background: #FF4500; border-color: #FF4500; }
 </style>
 
@@ -51,7 +21,10 @@
         <h2>{{ product.name }}</h2>
         <p class="desc">{{ product.desc }}</p>
         <p class="price">{{ product.price }}</p>
-        <button class="btn-buy" onclick="alert('SOLD OUT 💀')">ADD TO CART</button>
+        
+        <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="POST">
+            <button type="submit" class="btn-buy">ADD TO CART</button>
+        </form>
     </div>
 </div>
 {% endblock %}
